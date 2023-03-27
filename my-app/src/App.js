@@ -1,7 +1,9 @@
+import { useState } from "react";
 import "./App.css";
 
 function Button() {
-  return <button>TEST</button>;
+  const [counter, setCounter] = useState(0);
+  return <button onClick={() => setCounter(counter + 1)}>{counter}</button>;
 }
 function App() {
   return <Button />;
