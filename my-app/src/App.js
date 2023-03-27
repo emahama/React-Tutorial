@@ -1,10 +1,10 @@
 import "./App.css";
 
-function Hello() {
-  return <div className="App">Hello React !!.</div>;
+function Button() {
+  return <button>TEST</button>;
 }
 function App() {
-  return <Hello />;
+  return <Button />;
 }
 
 export default App;
