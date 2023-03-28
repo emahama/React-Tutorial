@@ -70,12 +70,18 @@ class Form extends React.Component {
 
 // App Component
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      profiles: testData,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     profiles: testData,
+  //   };
+  // }
+
+  // or
+
+  // using class fields ()
+  state = { profiles: testData };
+
   render() {
     return (
       <div>
