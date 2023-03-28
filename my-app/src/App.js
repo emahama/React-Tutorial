@@ -47,7 +47,7 @@ class Cards extends React.Component {
   render() {
     return (
       <div>
-        {testData.map((profile) => (
+        {this.props.profiles.map((profile) => (
           <Card {...profile} />
         ))}
       </div>
@@ -55,12 +55,33 @@ class Cards extends React.Component {
   }
 }
 
+// Form Component
+
+class Form extends React.Component {
+  render() {
+    return (
+      <form action="">
+        <input type="text" placeholder="Github username" />
+        <button>Add Card</button>
+      </form>
+    );
+  }
+}
+
+// App Component
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      profiles: testData,
+    };
+  }
   render() {
     return (
       <div>
         <div className="header">{this.props.title}</div>;
-        <Cards />;
+        <Form />
+        <Cards profiles={this.state.profiles} />;
       </div>
     );
   }
