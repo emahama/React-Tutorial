@@ -45,12 +45,11 @@ class Card extends React.Component {
 
 class Cards extends React.Component {
   render() {
-    const profile1 = { ...testData[0] };
-    const profile2 = { ...testData[1] };
     return (
       <div>
-        <Card {...profile1} />
-        <Card {...profile2} />
+        {testData.map((profile) => (
+          <Card {...profile} />
+        ))}
       </div>
     );
   }
