@@ -48,7 +48,7 @@ class Cards extends React.Component {
     return (
       <div>
         {this.props.profiles.map((profile) => (
-          <Card {...profile} />
+          <Card key={profile.id} {...profile} />
         ))}
       </div>
     );
@@ -58,10 +58,15 @@ class Cards extends React.Component {
 // Form Component
 
 class Form extends React.Component {
-  state = { userName: "abc" };
-  handleSubmit = (event) => {
+  state = { userName: "" };
+  handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(this.state.userName);
+    const resp = await fetch(
+      `https://api.github.com/users/${this.state.userName}`
+    );
+    const data = await resp.json();
+    this.props.onSubmit(data);
+    this.setState({ userName: "" });
   };
 
   render() {
@@ -92,13 +97,20 @@ class App extends React.Component {
   // or
 
   // using class fields ()
-  state = { profiles: testData };
+  state = { profiles: [] };
+
+  addNewProfile = (profileData) => {
+    // this.setState((prevState) => ({
+    //   profiles: [...prevState.profiles, profileData],
+    // }));
+    this.setState({ profiles: [...this.state.profiles, profileData] });
+  };
 
   render() {
     return (
       <div>
         <div className="header">{this.props.title}</div>;
-        <Form />
+        <Form onSubmit={this.addNewProfile} />
         <Cards profiles={this.state.profiles} />;
       </div>
     );
